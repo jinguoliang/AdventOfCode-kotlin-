@@ -17,6 +17,12 @@ fun day10(): Unit {
     while (robotList.count { it.isFull() } != 0) {
         robotList.forEach { v ->
             if (v.isFull()) {
+                v.apply {
+                    // part1 answer
+                    if (lowValue == 17 && highValue == 61) {
+                        println("part1 answer: robot $id")
+                    }
+                }
                 v.dispatch()
             }
         }
@@ -109,11 +115,6 @@ class Robot(override var id: Int) : Receiver {
         } else {
             lowValue = highValue
             highValue = value
-        }
-
-        // part1 answer
-        if (lowValue == 17 && highValue == 61) {
-            println("part1 answer: robot $id")
         }
     }
 
