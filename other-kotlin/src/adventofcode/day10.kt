@@ -17,10 +17,7 @@ fun day10(): Unit {
     while (robotList.count { it.isFull() } != 0) {
         robotList.forEach { v ->
             if (v.isFull()) {
-                v.lowReceiver!!.gaveValue(v.lowValue)
-                v.lowValue = -1
-                v.highReceiver!!.gaveValue(v.highValue)
-                v.highValue = -1
+                v.dispatch()
             }
         }
     }
@@ -127,8 +124,14 @@ class Robot(override var id: Int) : Receiver {
         return false
     }
 
+    fun dispatch() {
+        lowReceiver!!.gaveValue(lowValue)
+        lowValue = -1
+        highReceiver!!.gaveValue(highValue)
+        highValue = -1
+    }
+
     override fun toString(): String {
         return "I am robot $id, I has $lowValue and $highValue, and I will give low to ${lowReceiver?.id} and give high to ${highReceiver?.id}"
     }
-
 }
