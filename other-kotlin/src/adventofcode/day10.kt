@@ -12,7 +12,7 @@ fun day10(): Unit {
 
     val (robots, outputs) = parseData()
 
-    val robotList = robots.toList().map { it.second }
+    val robotList = robots.map { it.value }
 
     while (robotList.count { it.isFull() } != 0) {
         robotList.forEach { v ->
@@ -22,11 +22,11 @@ fun day10(): Unit {
         }
     }
 
-    println("part2 answer: " + outputs.filter { it.key in 0..2 }.toList().
-            fold(1, { multi, kv -> multi * kv.second.first() }))
+    println("part2 answer: " + outputs.filter { it.key in 0..2 }.values.
+            fold(1, { multi, v -> multi * v.first() }))
 }
 
-fun  parseData(): Pair<Map<Int, Robot>, Map<Int, Output>> {
+fun parseData(): Pair<Map<Int, Robot>, Map<Int, Output>> {
 
     val robots = mutableMapOf<Int, Robot>()
     val outputs = mutableMapOf<Int, Output>()
